@@ -1,7 +1,10 @@
 import { ResponeError } from "../error/respone-error.js";
 
-const validate = (shcema, request) => {
-  const result = shcema.validate(request);
+const validate = (schema, request) => {
+  const result = schema.validate(request, {
+    abortEarly: false,
+    allowUnknown: false,
+  });
 
   if (result.error) {
     throw new ResponeError(400, result.error.message);
