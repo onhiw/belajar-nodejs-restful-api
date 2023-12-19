@@ -7,7 +7,6 @@ import {
   updateContactValidation,
 } from "../validations/contact-validation.js";
 import { ResponseError } from "../error/respone-error.js";
-import { logger } from "../applications/logging.js";
 
 const create = async (user, request) => {
   const contact = validate(createContactValidation, request);
@@ -117,9 +116,6 @@ const search = async (user, request) => {
   filters.push({
     username: user.username,
   });
-
-  logger.info("request.name");
-  logger.info(request.name);
 
   if (request.name) {
     filters.push({

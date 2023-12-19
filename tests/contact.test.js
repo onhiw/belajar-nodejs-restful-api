@@ -8,7 +8,6 @@ import {
   removeTestUser,
 } from "./test-util.js";
 import { web } from "../src/applications/web.js";
-import { logger } from "../src/applications/logging.js";
 
 describe("POST /api/contacts", () => {
   beforeEach(async () => {
@@ -30,8 +29,6 @@ describe("POST /api/contacts", () => {
         email: "test@gmail.com",
         phone: "089276371231",
       });
-
-    logger.info(result);
 
     expect(result.status).toBe(200);
     expect(result.body.data.id).toBeDefined();
@@ -89,8 +86,6 @@ describe("GET /api/contacts/:contactId", function () {
     const result = await supertest(web)
       .get("/api/contacts/" + (testContact.id + 1))
       .set("Authorization", "test");
-
-    logger.info(result);
 
     expect(result.status).toBe(404);
   });
@@ -240,8 +235,6 @@ describe("GET /api/contacts", () => {
       })
       .set("Authorization", "test");
 
-    logger.info(result);
-
     expect(result.status).toBe(200);
     expect(result.body.data.length).toBe(6);
     expect(result.body.paging.page).toBe(1);
@@ -257,8 +250,6 @@ describe("GET /api/contacts", () => {
       })
       .set("Authorization", "test");
 
-    logger.info(result);
-
     expect(result.status).toBe(200);
     expect(result.body.data.length).toBe(6);
     expect(result.body.paging.page).toBe(1);
@@ -273,8 +264,6 @@ describe("GET /api/contacts", () => {
         phone: "0809000001",
       })
       .set("Authorization", "test");
-
-    logger.info(result);
 
     expect(result.status).toBe(200);
     expect(result.body.data.length).toBe(6);

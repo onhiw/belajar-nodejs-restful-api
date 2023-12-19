@@ -1,4 +1,3 @@
-import { logger } from "../applications/logging.js";
 import contactService from "../services/contact-service.js";
 
 const create = async (req, res, next) => {
@@ -61,7 +60,6 @@ const search = async (req, res, next) => {
   try {
     const user = req.user;
 
-    // logger.info(req.query);
     const request = {
       name: req.query.name,
       email: req.query.email,

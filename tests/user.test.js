@@ -1,5 +1,4 @@
 import supertest from "supertest";
-import { logger } from "../src/applications/logging.js";
 import { web } from "../src/applications/web.js";
 import { createTestUser, getTestUser, removeTestUser } from "./test-util.js";
 import bcript from "bcrypt";
@@ -66,8 +65,6 @@ describe("POST /api/users/login", () => {
       password: "rahasia",
     });
 
-    logger.info(result.body);
-
     expect(result.status).toBe(200);
     expect(result.body.data.token).toBeDefined();
     expect(result.body.data.token).not.toBe("test");
@@ -79,8 +76,6 @@ describe("POST /api/users/login", () => {
       password: "",
     });
 
-    logger.info(result.body);
-
     expect(result.status).toBe(400);
     expect(result.body.errors).toBeDefined();
   });
@@ -91,8 +86,6 @@ describe("POST /api/users/login", () => {
       password: "salah",
     });
 
-    logger.info(result.body);
-
     expect(result.status).toBe(401);
     expect(result.body.errors).toBeDefined();
   });
@@ -102,8 +95,6 @@ describe("POST /api/users/login", () => {
       username: "salah",
       password: "rahasia",
     });
-
-    logger.info(result.body);
 
     expect(result.status).toBe(401);
     expect(result.body.errors).toBeDefined();
