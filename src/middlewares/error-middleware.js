@@ -1,4 +1,4 @@
-import { ResponeError } from "../error/respone-error.js";
+import { ResponseError } from "../error/respone-error.js";
 
 const errorMiddleware = async (err, req, res, next) => {
   if (!err) {
@@ -6,7 +6,7 @@ const errorMiddleware = async (err, req, res, next) => {
     return;
   }
 
-  if (err instanceof ResponeError) {
+  if (err instanceof ResponseError) {
     res
       .status(err.status)
       .json({

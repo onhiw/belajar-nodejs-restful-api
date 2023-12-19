@@ -1,5 +1,5 @@
 import { prismaClient } from "../applications/database.js";
-import { ResponeError } from "../error/respone-error.js";
+import { ResponseError } from "../error/respone-error.js";
 import {
   getUserValidation,
   loginUserValidation,
@@ -20,7 +20,7 @@ const register = async (request) => {
   });
 
   if (countUser === 1) {
-    throw new ResponeError(400, "Username already exist");
+    throw new ResponseError(400, "Username already exist");
   }
 
   user.password = await bcript.hash(user.password, 10);
@@ -48,7 +48,7 @@ const login = async (request) => {
   });
 
   if (!user) {
-    throw new ResponeError(401, "Username or Password wrong");
+    throw new ResponseError(401, "Username or Password wrong");
   }
 
   const isPasswordValid = await bcript.compare(
@@ -57,7 +57,7 @@ const login = async (request) => {
   );
 
   if (!isPasswordValid) {
-    throw new ResponeError(401, "Username or Password wrong");
+    throw new ResponseError(401, "Username or Password wrong");
   }
 
   const token = uuid().toString();
@@ -89,7 +89,7 @@ const get = async (username) => {
   });
 
   if (!user) {
-    throw new ResponeError(404, "User is not found");
+    throw new ResponseError(404, "User is not found");
   }
 
   return user;
@@ -105,7 +105,7 @@ const update = async (request) => {
   });
 
   if (totalUserInDatabase !== 1) {
-    throw new ResponeError(404, "User is not found");
+    throw new ResponseError(404, "User is not found");
   }
 
   const data = {};
@@ -140,7 +140,7 @@ const logout = async (username) => {
   });
 
   if (!user) {
-    throw new ResponeError(404, "User is not found");
+    throw new ResponseError(404, "User is not found");
   }
 
   return prismaClient.user.update({

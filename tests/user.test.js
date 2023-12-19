@@ -1,4 +1,4 @@
-const supertest = require("supertest");
+import supertest from "supertest";
 import { logger } from "../src/applications/logging.js";
 import { web } from "../src/applications/web.js";
 import { createTestUser, getTestUser, removeTestUser } from "./test-util.js";

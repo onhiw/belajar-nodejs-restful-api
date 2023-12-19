@@ -1,4 +1,4 @@
-import { prismaClient } from "../applications/database";
+import { prismaClient } from "../applications/database.js";
 
 const authMiddleware = async (req, res, next) => {
   const token = req.get("Authorization");
