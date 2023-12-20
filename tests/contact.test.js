@@ -154,7 +154,7 @@ describe("PUT /api/contacts/:contactId", () => {
   });
 });
 
-describe("Delete /api/contacts/:contactId", () => {
+describe("DELETE /api/contacts/:contactId", () => {
   beforeEach(async () => {
     await createTestUser();
     await createTestContact();

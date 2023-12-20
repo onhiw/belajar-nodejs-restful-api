@@ -3,7 +3,7 @@ import { web } from "../src/applications/web.js";
 import { createTestUser, getTestUser, removeTestUser } from "./test-util.js";
 import bcript from "bcrypt";
 
-describe("Post /api/users", function () {
+describe("POST /api/users", function () {
   afterEach(async () => {
     await removeTestUser();
   });
